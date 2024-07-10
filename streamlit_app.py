@@ -1,6 +1,6 @@
 import streamlit as st
 from streamlit_webrtc import webrtc_streamer
-import cv2
+import av
 
 def main():
     st.title("WebRTC Example")
@@ -10,8 +10,9 @@ def main():
         while True:
             frame = webrtc_ctx.video_receiver.get_frame()
             if frame is not None:
-                img = frame.to_ndarray(format="bgr24")
-                st.image(img, channels="BGR")
+                # Process the frame if needed
+                processed_frame = frame.to_ndarray(format="bgr24")
+                st.image(processed_frame, channels="BGR")
 
 if __name__ == "__main__":
     main()
